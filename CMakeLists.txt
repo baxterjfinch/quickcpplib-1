@@ -1,4 +1,16 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
+
+# Setup this cmake environment for this project
+# Set default_build_type
+set(default_build_type "Release")
+if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  message(STATUS "Setting build type to '${default_build_type}' as none was specified.")
+  set(CMAKE_BUILD_TYPE "${default_build_type}" CACHE
+      STRING "Choose the type of build." FORCE)
+  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS
+    "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+endif()
+
 # If necessary bring in the quickcpplib cmake tooling
 list(FIND CMAKE_MODULE_PATH "quickcpplib" quickcpplib_idx)
 if(${quickcpplib_idx} GREATER -1)
